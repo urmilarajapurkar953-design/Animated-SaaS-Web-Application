@@ -110,7 +110,12 @@ export const Pricing = () => {
                   <span className="text-4xl font-bold tracking-tighter leading-none">
                     ${monthlyPrice}
                   </span>
-                  <span className="tracking-tight font-bold text-black/50">
+                  <span
+                    className={twMerge(
+                      "tracking-tight font-bold text-black/50",
+                      inverse && "text-white/60"
+                    )}
+                  >
                     /month
                   </span>
                 </div>
@@ -125,9 +130,9 @@ export const Pricing = () => {
                 </button>
 
                 <ul className="flex flex-col gap-5 mt-8">
-                  {features.map((feature, index) => (
+                  {features.map((feature) => (
                     <li
-                      key={feature + index}
+                      key={feature}
                       className="text-sm flex items-center gap-4"
                     >
                       <Image
@@ -135,7 +140,6 @@ export const Pricing = () => {
                         alt="check"
                         width={24}
                         height={24}
-                        className="h-6 w-6"
                       />
                       <span>{feature}</span>
                     </li>
