@@ -12,10 +12,9 @@ import avatar9 from "@/assets/avatar-9.png";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import React from "react";
 
 /* =========================
-   Testimonial Type
+   Type
 ========================= */
 
 type Testimonial = {
@@ -26,7 +25,7 @@ type Testimonial = {
 };
 
 /* =========================
-   Testimonials Data
+   Data
 ========================= */
 
 const testimonials: Testimonial[] = [
@@ -91,62 +90,63 @@ const testimonials: Testimonial[] = [
 ========================= */
 
 function TestimonialsColumn({
-  className, testimonials, duration = 10,
+  className,
+  testimonials,
+  duration = 20,
 }: {
   className?: string;
   testimonials: Testimonial[];
   duration?: number;
 }) {
   return (
-    <div className={className}>
+    <div className={`relative h-[500px] overflow-hidden ${className}`}>
       <motion.div
-        animate={{ translateY: "-50%" }}
+        animate={{ y: ["0%", "-50%"] }}
         transition={{
           duration,
           repeat: Infinity,
           ease: "linear",
         }}
-        className="flex flex-col gap-6 pb-6"
+        className="flex flex-col gap-6"
       >
-        {[...Array(2)].map((_, outerIndex) => (
-          <div key={outerIndex}>
-            {testimonials.map(({ text, imageSrc, name, username }) => (
-              <div key={name} className="card">
-                <div>{text}</div>
+        {[...testimonials, ...testimonials].map(
+          ({ text, imageSrc, name, username }, index) => (
+            <div key={index} className="card">
+              <div>{text}</div>
 
-                <div className="flex items-center gap-2 mt-5">
-                  <Image
-                    src={imageSrc}
-                    alt={name}
-                    width={40}
-                    height={40}
-                    className="h-10 w-10 rounded-full" />
+              <div className="flex items-center gap-2 mt-5">
+                <Image
+                  src={imageSrc}
+                  alt={name}
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-full"
+                />
 
-                  <div className="flex flex-col">
-                    <div className="font-medium tracking-tight leading-5">
-                      {name}
-                    </div>
-                    <div className="leading-5 tracking-tight text-black/50">
-                      {username}
-                    </div>
+                <div className="flex flex-col">
+                  <div className="font-medium tracking-tight leading-5">
+                    {name}
+                  </div>
+                  <div className="leading-5 tracking-tight text-black/50">
+                    {username}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        ))}
+            </div>
+          )
+        )}
       </motion.div>
     </div>
   );
 }
 
 /* =========================
-   Main Export Component
+   Main Component
 ========================= */
 
 export const Testimonials = () => {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-2 bg-white">
       <div className="container">
         <div className="section-heading text-center">
           <h2 className="section-title">Testimonials</h2>
@@ -158,17 +158,19 @@ export const Testimonials = () => {
         <div className="flex justify-center gap-6 mt-10">
           <TestimonialsColumn
             testimonials={testimonials.slice(0, 3)}
-            duration={15}
+            duration={14}
           />
+
           <TestimonialsColumn
             testimonials={testimonials.slice(3, 6)}
             className="hidden md:block"
-            duration={19}
+            duration={14}
           />
+
           <TestimonialsColumn
             testimonials={testimonials.slice(6, 9)}
             className="hidden lg:block"
-            duration={17}
+            duration={14}
           />
         </div>
       </div>
