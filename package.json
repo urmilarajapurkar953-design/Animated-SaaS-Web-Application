@@ -21,7 +21,7 @@
     "@types/react-dom": "^18",
     "caniuse-lite": "^1.0.30001776",
     "eslint": "^8",
-    "eslint-config-next": "^16.1.6",
+    "eslint-config-next": "^14.2.4",
     "postcss": "^8",
     "sharp": "^0.34.5",
     "tailwind-merge": "^2.4.0",
